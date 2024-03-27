@@ -1,6 +1,7 @@
 package springidol.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,8 @@ public class Instrumentalist implements Performer {
 	
 	@Value("Jingle Bells")
 	private String song;
-	
-	@Autowired
-	// @Autowired @Qualifier("guitar")
+
+	@Autowired @Qualifier("guitar")
 	// 또는 @Resource(name="guitar") 
 	// 또는 @Inject @Named("guitar")    
 	private Instrument instrument;
