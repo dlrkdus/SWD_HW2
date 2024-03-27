@@ -1,11 +1,24 @@
 package springidol;
 
+import org.springframework.stereotype.Component;
+
 public class Singer implements Performer {
 	private String name;
 	private Song song;
 	private Instrument instrument;
 	
 	public Singer() {}
+
+	public void setName(String name){
+		this.name=name;
+	}
+	public void setSong(Song song){
+		this.song=song;
+	}
+
+	public void setInstrument(Instrument instrument){
+		this.instrument=instrument;
+	}
 
 	public Singer(String name, Song song) {
 		this.name = name;

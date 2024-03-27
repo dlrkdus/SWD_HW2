@@ -3,8 +3,8 @@ package springidol;
 public class Encore {
 	private Performer encorePerformer;
 
-	public void setEncorePerformer(Performer perfomer) {
-		this.encorePerformer = perfomer;
+	public void setEncorePerformer(Performer performer) {
+		this.encorePerformer = performer;
 	}
 
 	public void execute() {
