@@ -6,27 +6,28 @@ import java.util.Map;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import springidol.Instrument;
-import springidol.Instrumentalist;
-import springidol.OneManBand;
-import springidol.Performer;
-import springidol.Piano;
-import springidol.Poem;
-import springidol.PoeticJuggler;
-import springidol.Saxophone;
-import springidol.Sonnet29;
-import springidol.SpringIdol;
+import springidol.*;
 
 @Configuration
 public class SpringConfig {
+
+	//Instruments Bean
 	@Bean
-	public Saxophone saxophone() {	  	// method 이름을 bean의 ID로 사용 ("saxophone") 
-		return new Saxophone();			// Saxophone-type bean 생성  
-	}
+	public Saxophone saxophone() {return new Saxophone(); }
 	
 	@Bean
-	public Piano piano() {	    
-		return new Piano();		
+	public Harmonica harmonica() {
+		return new Harmonica();
+	}
+
+	@Bean
+	public Cymbal cymbal() {
+		return new Cymbal();
+	}
+
+	@Bean
+	public Piano piano() {
+		return new Piano();
 	}
 		
 	@Bean
@@ -38,25 +39,67 @@ public class SpringConfig {
 	public PoeticJuggler duke() {
 		return new PoeticJuggler(5, sonnet29());
 	}
-	
+
+	//Song Bean
+	@Bean
+	public Song someone() {
+		Song someone = new Song();
+		someone.setTitle("Someone Like You");
+		someone.setArtist("Adele");
+		return someone;
+	}
+
+	@Bean
+	public Song payphone() {
+		Song payphone = new Song();
+		payphone.setTitle("Payphone");
+		payphone.setArtist("Maroon5");
+		return payphone;
+	}
+
 	@Bean(name="kenny")				// name 속성을 통해 bean ID 지정 가능 
 	public Instrumentalist instr() {
-		return null;
-	} 
-	
+		Instrumentalist instr = new Instrumentalist();
+		instr.setSong("Jingle Bells");
+		instr.setInstrument(saxophone());		// Setter-based DI
+		return instr;
+	}
+
 	@Bean		
 	public OneManBand hank() {
 		Map<String, Instrument> instrMap = new HashMap<String, Instrument>();
+		instrMap.put("HARMONICA:", harmonica());
+		instrMap.put("CYMBAL:", cymbal());
 		instrMap.put("SAXOPHONE", saxophone());
-		instrMap.put("PIANO", piano());
-		OneManBand omb = new OneManBand();		
+		OneManBand omb = new OneManBand();
 		omb.setInstruments(instrMap);
 		return omb;
-	}		
-	
+	}
+
+	// Singer Bean 추가
+	@Bean
+	public Singer lena() {
+		return new Singer("Lena Park", someone());
+	}
+
+	public Singer suhyun(){
+		return new Singer("Suhyun",lena().getSong(),piano());
+	}
+
 	@Bean
 	public SpringIdol springIdol() {
-		return null;		
+		SpringIdol si = new SpringIdol();
+		si.setPerformers(new Performer[]{duke(), instr(), hank(), lena(), suhyun()}); // 공연자 추가(Singer, Instrumentalist)
+		return si;
 	}
+
+	@Bean
+	public Encore encore() {
+		Encore encore = new Encore();
+		Performer [] performers = springIdol().getPerformers();
+		encore.setEncorePerformer(performers[(int)(Math.random()*performers.length)]); // 랜덤 앵콜 공연자
+		return encore;
+	}
+
 
 }

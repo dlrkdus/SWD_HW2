@@ -1,5 +1,7 @@
 package springidol;
 
+import org.springframework.stereotype.Component;
+
 public class Singer implements Performer {
 	private String name;
 	private Song song;
