@@ -9,17 +9,6 @@ public class Singer implements Performer {
 	
 	public Singer() {}
 
-	public void setName(String name){
-		this.name=name;
-	}
-	public void setSong(Song song){
-		this.song=song;
-	}
-
-	public void setInstrument(Instrument instrument){
-		this.instrument=instrument;
-	}
-
 	public Singer(String name, Song song) {
 		this.name = name;
 		this.song = song;
