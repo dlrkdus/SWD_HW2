@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ==================================================================== -->
+	<!-- Spring Idol talent compitition class -->
+	<!-- ==================================================================== -->
+	<bean id="springIdol" class="springidol.SpringIdol">
+		<property name="performers">
+			<list>
+				<ref bean="duke" />
+				<ref bean="kenny" />
+				<ref bean="hank" />
+				<!--가수 A,B 추가-->
+				<ref bean="lena" />
+				<ref bean="suhyun"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- Performers -->
+	<!-- ==================================================================== -->
+
+	<bean id="duke" class="springidol.PoeticJuggler">
+		<constructor-arg ref="sonnet29" />
+	</bean>
+	<!--1. kenny bean 이 saxophone 대신 guitar 를 연주하도록 변경한다-->
+	<bean id="kenny" class="springidol.Instrumentalist">
+		<property name="song" value="Jingle Bells" />
+		<property name="instrument" ref="guitar" />
+	</bean>
+
+	<!--hank bean 이 harmonica, cymbal, saxophone 을 동시에 연주하도록 변경한다.-->
+	<bean id="hank" class="springidol.OneManBand">
+		<property name="instruments">
+			<map>
+				<entry>
+					<key><value>SAXOPHONE</value></key>
+					<ref bean="saxophone" />
+				</entry>
+				<entry key="HARMONICA" value-ref="harmonica" />
+				<entry key="CYMBAL" value-ref="cymbal" />
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="sonnet29" class="springidol.Sonnet29" />
+
+	<!--Singer Bean-->
+
+	<!--Singer는 Constructor를 이용해서 DI가 실행될 수 있도록 정의한다.-->
+	<!--value 속성은 해당 인자에 직접적인 값(value)을 전달할 때 사용됩니다.
+	예를 들어, 문자열, 숫자, 불리언 등과 같은 기본 자료형 또는 문자열로 표현되는 객체를 전달할 때 사용됩니다.-->
+	<!--ref: ref 속성은 다른 빈(bean)을 참조하여 해당 인자에 전달할 때 사용됩니다.
+	즉, ref 속성을 사용하면 Spring 컨테이너에서 지정된 빈을 찾아서 해당 인자로 전달합니다.-->
+	<bean  id="lena" class="springidol.Singer">
+		<constructor-arg value="Lena Park"/>
+		<constructor-arg ref="song1" />
+	</bean>
+
+	<!--가수 B는 특정 곡을 지정하지 않고 항상 가수 A가 선택한 곡을 따라 부르도록 설정해 본다. (SpEL 이용; p.41 참조)-->
+	<bean id="suhyun" class="springidol.Singer">
+		<constructor-arg value="Suhyun"/>
+		<constructor-arg value="#{lena.song}" />
+		<constructor-arg value="#{piano}" />
+	</bean>
+
+	<!--Song bean-->
+
+	<!--Song은 Setter를 이용해서 의존객체/값들을 주입받고-->
+	<bean id="song1" class="springidol.Song">
+		<property name="artist" value="Adele" />
+		<property name="title" value="Someone Like You" />
+	</bean>
+	<!--가수 A는 두 곡 중에 하나를 선택해서 부르게 하고, -> 선택지 bean 하나 더 추가할게요-->
+	<bean id="song2" class="springidol.Song">
+		<property name="artist" value="Maroon5" />
+		<property name="title" value="Payphone" />
+	</bean>
+
+	<!--Encore bean-->
+	<bean id="encore" class="springidol.Encore">
+		<property name="encoreist"
+				  value="#{springIdol.performers[T(java.lang.Math).random()*springIdol.performers.length]}" />
+	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- Instruments performers can use -->
+	<!-- ==================================================================== -->
+	<bean id="harmonica" class="springidol.Harmonica" />
+	<bean id="cymbal" class="springidol.Cymbal" />
+	<bean id="guitar" class="springidol.Guitar" />
+	<bean id="saxophone" class="springidol.Saxophone" />
+	<bean id="piano" class="springidol.Piano"/>
+
+</beans>
