@@ -4,8 +4,7 @@
 	<title>Welcome</title>
 </head>
 <body>
-	<div><a href="hello.do">http://.../helloSpringIdol-JavaConfig/hello.do</a></div><br>
-	<div><a href="hello.do?name=Chris">http://.../helloSpringIdol-JavaConfig/hello.do?name=Chris</a></div>
+
 	<form method="post" action="performUsingComm">
     Performer:
     <select name="id">

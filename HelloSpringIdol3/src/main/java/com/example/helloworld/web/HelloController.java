@@ -22,35 +22,35 @@ public class HelloController {
 	@Autowired
 	HelloService helloService;
 	
-	@RequestMapping("/hello.do")		// request handler method
-	public ModelAndView hello(
-		@RequestParam(value="name", required=false) String name) {
-
+//	@RequestMapping("/hello.do")		// request handler method
+//	public ModelAndView hello(
+//		@RequestParam(value="name", required=false) String name) {
+//
+//		String greeting = helloService.getGreeting();
+//		if (name != null) greeting = greeting + name;
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("hello");
+//		mav.addObject("greeting", greeting);
+//		return mav;
+//	}
+	@PostMapping("/perform")
+	public ModelAndView helloAndPerform1(@RequestParam String id, @RequestParam String requester){
 		String greeting = helloService.getGreeting();
-		if (name != null) greeting = greeting + name;
+		String performance=null;
+		if (id != null) {
+			greeting = greeting + id;
+			performance = helloService.makePerformance(id);
+		}
+		// ModelAndView 객체를 생성하여 뷰 이름과 모델 데이터를 설정
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("hello");
+		mav.setViewName("perform");
 		mav.addObject("greeting", greeting);
+		mav.addObject("performance",performance);
 		return mav;
 	}
-	@GetMapping("/perform")
-	public String helloAndPerform1(@RequestParam String id, @RequestParam String requester){
-		String greeting = helloService.getGreeting();
-		String performance=null;
-		if (id != null) {
-			greeting = greeting + id;
-			performance = helloService.makePerformance(id);
-		}
-		// ModelAndView 객체를 생성하여 뷰 이름과 모델 데이터를 설정
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("perform");
-		mav.addObject("greeting", greeting);
-		mav.addObject("performance",performance);
-		return "perform";
-	}
 
-	@GetMapping("/perform/{id}/requester/{requester}")
-	public String helloAndPerform2(@PathVariable String id, @PathVariable String requester){
+	@PostMapping("/perform/{id}/requester/{requester}")
+	public ModelAndView helloAndPerform2(@PathVariable String id, @PathVariable String requester){
 		String greeting = helloService.getGreeting();
 		String performance=null;
 		if (id != null) {
@@ -62,11 +62,11 @@ public class HelloController {
 		mav.setViewName("perform");
 		mav.addObject("greeting", greeting);
 		mav.addObject("performance",performance);
-		return "perform";
+		return mav;
 	}
 
 	@PostMapping("/performUsingComm")
-	public String helloAndPerformUsingComm(@RequestBody PerformRequest request){
+	public ModelAndView helloAndPerformUsingComm(PerformRequest request){
 
 		// PerformRequest 객체를 통해 id와 requester를 전송받음
 		String id = request.getId();
@@ -82,7 +82,7 @@ public class HelloController {
 		mav.addObject("performance", performance);
 
 		// ModelAndView 객체를 반환
-		return "perform";
+		return mav;
 	}
 
 

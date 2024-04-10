@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springIdol3" />
         <module name="HW2" />
-        <module name="HelloSpringIdol3" />
+        <module name="helloSpringIdol" />
         <module name="HW1" />
         <module name="HW3" />
       </profile>
