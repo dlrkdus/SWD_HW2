@@ -2,13 +2,11 @@ package com.example.helloworld.web;
 
 import java.util.Calendar;
 
+import com.example.helloworld.domain.PerformRequest;
 import com.example.helloworld.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.springidol.SpringIdol;
@@ -43,7 +41,7 @@ public class HelloController {
 			greeting = greeting + id;
 			performance = helloService.makePerformance(id);
 		}
-
+		// ModelAndView 객체를 생성하여 뷰 이름과 모델 데이터를 설정
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("perform");
 		mav.addObject("greeting", greeting);
@@ -59,11 +57,31 @@ public class HelloController {
 			greeting = greeting + id;
 			performance = helloService.makePerformance(id);
 		}
-
+		// ModelAndView 객체를 생성하여 뷰 이름과 모델 데이터를 설정
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("perform");
 		mav.addObject("greeting", greeting);
 		mav.addObject("performance",performance);
+		return "perform";
+	}
+
+	@PostMapping("/performUsingComm")
+	public String helloAndPerformUsingComm(@RequestBody PerformRequest request){
+
+		// PerformRequest 객체를 통해 id와 requester를 전송받음
+		String id = request.getId();
+		String requester = request.getRequester();
+
+		String greeting = helloService.getGreeting() + " " + requester;
+		String performance = helloService.makePerformance(id);
+
+		// ModelAndView 객체를 생성하여 뷰 이름과 모델 데이터를 설정
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("perform");
+		mav.addObject("greeting", greeting);
+		mav.addObject("performance", performance);
+
+		// ModelAndView 객체를 반환
 		return "perform";
 	}
 
