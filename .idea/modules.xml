@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/HelloWorld.iml" filepath="$PROJECT_DIR$/HelloWorld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HelloWorld2.iml" filepath="$PROJECT_DIR$/HelloWorld2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SWD_HW2.iml" filepath="$PROJECT_DIR$/.idea/SWD_HW2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpringMVCExample.iml" filepath="$PROJECT_DIR$/SpringMVCExample.iml" />
     </modules>
   </component>
 </project>

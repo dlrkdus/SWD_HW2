@@ -1,6 +1,6 @@
 package springidol.javaconf1;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation. AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import springidol.TalentCompetition;

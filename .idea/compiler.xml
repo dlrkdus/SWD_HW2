@@ -6,8 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springIdol3" />
+        <module name="HW2" />
+        <module name="helloSpringIdol" />
         <module name="HW1" />
+        <module name="HW3" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="HelloSpringIdol2" target="1.8" />
+      <module name="HelloWorld" target="17" />
+      <module name="HelloWorld2" target="17" />
+      <module name="SpringMVCExample" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

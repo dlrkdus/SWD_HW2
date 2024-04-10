@@ -6,10 +6,22 @@
       <list>
         <option value="$PROJECT_DIR$/HW1/pom.xml" />
         <option value="$PROJECT_DIR$/HW2/pom.xml" />
+        <option value="$PROJECT_DIR$/HW3/pom.xml" />
+        <option value="$PROJECT_DIR$/HelloSpringIdol2/pom.xml" />
+        <option value="$USER_HOME$/Downloads/helloSpringIdol(lecture5)/helloSpringIdol-JavaConfig/HelloSpringIdol3/pom.xml" />
+        <option value="$USER_HOME$/Downloads/helloSpringIdol(lecture5)/helloSpringIdol-JavaConfig/HelloSpringIdol2/pom.xml" />
+        <option value="$PROJECT_DIR$/HelloSpringIdol3/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/HelloSpringIdol2/pom.xml" />
+        <option value="$USER_HOME$/Downloads/helloSpringIdol(lecture5)/helloSpringIdol-JavaConfig/HelloSpringIdol2/pom.xml" />
+        <option value="$USER_HOME$/Downloads/helloSpringIdol(lecture5)/helloSpringIdol-JavaConfig/HelloSpringIdol3/pom.xml" />
+      </set>
+    </option>
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
