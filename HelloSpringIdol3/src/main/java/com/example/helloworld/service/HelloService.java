@@ -11,7 +11,7 @@ import java.util.Map;
 @Service
 public class HelloService {
 
-    private final Map<String, Performer> performers;
+    private Map<String, Performer> performers;
 
     @Autowired
     public HelloService(Map<String, Performer> performers) {
@@ -28,5 +28,20 @@ public class HelloService {
             return "Good evening! ";
         }
         return "Hello! ";
+    }
+
+    public String makePerformance(String id) {
+        String result = null;
+
+        for (Map.Entry<String, Performer> entry : performers.entrySet()) { // lambda 로 하면 result 값 변경시 오류 남
+            String performerId = entry.getKey();
+            Performer performer = entry.getValue();
+
+            if (performerId.equals(id)) { //파라미터 id와 performerId가 같으면
+                result = performer.perform(); //공연 시작
+                break;
+            }
+        }
+        return result;
     }
 }
