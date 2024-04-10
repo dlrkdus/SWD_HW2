@@ -28,9 +28,9 @@
 		<constructor-arg ref="sonnet29" />
 	</bean>
 	<!--1. kenny bean 이 saxophone 대신 guitar 를 연주하도록 변경한다-->
-	<bean id="kenny" class="springidol.Instrumentalist">
+	<bean id="ke nny" class="springidol.Instrumentalist">
 		<property name="song" value="Jingle Bells" />
-		<property name="instrument" ref="guitar" />
+ 		<property name="instrument" ref="guitar" />
 	</bean>
 
 	<!--hank bean 이 harmonica, cymbal, saxophone 을 동시에 연주하도록 변경한다.-->
